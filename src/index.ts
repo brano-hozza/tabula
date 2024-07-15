@@ -20,7 +20,7 @@ function validateRow<T extends Schema[]>(
 }
 
 function splitRow(rowString: string, separator = ",", quote = '"'): string[] {
-  let state: "normal" | "quote" = "normal";
+  let state: "normal" | "quote" | "escape" = "normal";
   const words = [];
   let word = "";
   for (let i = 0; i < rowString.length; i++) {
@@ -29,11 +29,16 @@ function splitRow(rowString: string, separator = ",", quote = '"'): string[] {
       if (char === separator) {
         words.push(word);
         word = "";
+      } else if (char === "\\") {
+        state = "escape";
       } else if (char === quote) {
         state = "quote";
       } else {
         word += char;
       }
+    } else if (state === "escape") {
+      word += char;
+      state = "normal";
     } else if (state === "quote") {
       if (char === quote) {
         state = "normal";

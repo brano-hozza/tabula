@@ -50,7 +50,6 @@ export class Boolean implements SchemaType<boolean> {
 
 export class Obj<T extends object> implements SchemaType<T> {
   parse(value: string): T {
-    console.error(value);
     const obj = JSON.parse(value);
     if (typeof obj !== "object") {
       throw new Error("Invalid object value");

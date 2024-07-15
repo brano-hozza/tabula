@@ -102,4 +102,5 @@ export default {
   parseTable,
   parseTableGen,
   parseRow,
+  splitRow,
 };

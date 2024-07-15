@@ -58,6 +58,7 @@ interface Config<T extends Schema[]> {
   separator?: string;
   quote?: string;
   schema?: T;
+  header?: boolean;
 }
 
 function parseRow<T extends Schema[] = Schema[]>(
@@ -73,14 +74,17 @@ function parseTable<T extends Schema[] = Schema[]>(
   config: Config<T> = {}
 ): InferSchemaType<T>[] {
   if (typeof stream === "string") {
-    return stream
-      .split(config?.newline ?? "\n")
-      .map((line) => parseRow(line, config));
+    const rows = stream.split(config?.newline ?? "\n");
+    if (config.header) {
+      rows.shift();
+    }
+    return rows.map((line) => parseRow(line, config));
   } else if (Buffer.isBuffer(stream)) {
-    return stream
-      .toString()
-      .split(config?.newline ?? "\n")
-      .map((line) => parseRow(line, config));
+    const rows = stream.toString().split(config?.newline ?? "\n");
+    if (config.header) {
+      rows.shift();
+    }
+    return rows.map((line) => parseRow(line, config));
   }
   throw new Error("Invalid input");
 }
@@ -90,12 +94,20 @@ function* parseTableGen<T extends Schema[] = Schema[]>(
   config: Config<T> = {}
 ): Generator<InferSchemaType<T>> {
   if (typeof stream === "string") {
-    for (const line of stream.split(config?.newline ?? "\n")) {
+    const rows = stream.split(config?.newline ?? "\n");
+    if (config.header) {
+      rows.shift();
+    }
+    for (const line of rows) {
       yield parseRow(line, config);
     }
     return;
   } else if (Buffer.isBuffer(stream)) {
-    for (const line of stream.toString().split(config?.newline ?? "\n")) {
+    const rows = stream.toString().split(config?.newline ?? "\n");
+    if (config.header) {
+      rows.shift();
+    }
+    for (const line of rows) {
       yield parseRow(line, config);
     }
     return;

@@ -87,14 +87,10 @@ describe("Main CSV parsing tests", () => {
   test("should parse a CSV with custom schema", async () => {
     class CustomAtSchema implements SchemaType {
       parse(value: string): string {
-        if (!this.validate(value)) {
+        if (!value.startsWith("@")) {
           throw new Error("Invalid value");
         }
         return value.replace("@", "");
-      }
-
-      validate(value: string): boolean {
-        return value.startsWith("@");
       }
     }
 

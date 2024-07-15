@@ -6,7 +6,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "vitest --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
     "build": "npx tsup --dts"
   },
   "keywords": [

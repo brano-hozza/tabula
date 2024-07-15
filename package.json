@@ -1,10 +1,13 @@
 {
-  "name": "tabula",
+  "name": "@bhozza/tabula",
   "version": "0.0.1",
   "description": "Package to parse CSV with validation and types",
-  "main": "dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "vitest --watch"
+    "test": "vitest --watch",
+    "build": "npx tsup --dts"
   },
   "keywords": [
     "node",
@@ -14,9 +17,10 @@
   ],
   "author": "Branislav Hozza",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "dotenv": "^16.4.5",
+    "tsup": "^8.1.0",
     "typescript": "^5.5.3",
     "vitest": "^2.0.2"
   }

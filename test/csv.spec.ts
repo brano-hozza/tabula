@@ -16,7 +16,9 @@ describe("Main CSV parsing tests", () => {
   });
 
   test("should parse a CSV string table", async () => {
-    const csv = tabula.parseTable("a,b,c\n1,2,3\n4,5,6");
+    const csv = tabula.parseTable(`a,b,c
+1,2,3
+4,5,6`);
     expect(csv).toEqual([
       ["a", "b", "c"],
       ["1", "2", "3"],

@@ -8,16 +8,13 @@
   },
   "keywords": [
     "node",
-    "vine",
     "csv",
     "typescript",
     "validation"
   ],
   "author": "Branislav Hozza",
   "license": "ISC",
-  "dependencies": {
-    "@vinejs/vine": "^2.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.14.10",
     "typescript": "^5.5.3",

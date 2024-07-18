@@ -1,6 +1,6 @@
 {
   "name": "@bhozza/tabula",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Package to parse CSV with validation and types",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",

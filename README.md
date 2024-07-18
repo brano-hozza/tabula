@@ -13,7 +13,7 @@ npm install @bhozza/tabula
 ### Basic usage
 
 ```typescript
-import tabula from "tabula";
+import tabula from "@bhozza/tabula";
 
 const csv = "name,age\nAlice,30\nBob,25";
 
@@ -30,7 +30,7 @@ console.log(parsed);
 ### Validation and parsing
 
 ```typescript
-import tabula, { StringSchema, NumberSchema } from "tabula";
+import tabula, { StringSchema, NumberSchema } from "@bhozza/tabula";
 
 const csv = "name,age\nAlice,30\nBob,25";
 
@@ -49,8 +49,7 @@ console.log(parsed);
 ### Custom schema
 
 ```typescript
-import tabula, { type SchemaType, StringSchema } from "tabula";
-
+import tabula, { type SchemaType, StringSchema } from "@bhozza/tabula";
 class EmailSchema implements SchemaType<string> {
   parse(value: string): string {
     if (!value.includes("@")) {
@@ -60,7 +59,7 @@ class EmailSchema implements SchemaType<string> {
   }
 }
 
-const csv = "name,email\nAlice,alice@test.com\nBob,bob@test.com\n";
+const csv = "name,email\nAlice,alice@test.com\nBob,bob@test.com";
 
 const parsed = tabula.parse(csv, {
   schema: [StringSchema, EmailSchema] as const,

@@ -28,7 +28,11 @@
     "typescript",
     "validation"
   ],
-  "author": "Branislav Hozza",
+  "author": "Branislav Hozza <brankohozza@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brano-hozza/tabula.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",

@@ -5,7 +5,7 @@ Your lightweight CSV parser & validator
 ## Installation
 
 ```bash
-npm install tabula
+npm install @bhozza/tabula
 ```
 
 ## Usage
@@ -15,11 +15,7 @@ npm install tabula
 ```typescript
 import tabula from "tabula";
 
-const csv = `
-    name,age\n
-    Alice,30\n
-    Bob,25
-`;
+const csv = "name,age\nAlice,30\nBob,25";
 
 const parsed = tabula.parse(csv);
 
@@ -34,16 +30,12 @@ console.log(parsed);
 ### Validation and parsing
 
 ```typescript
-import tabula from "tabula";
+import tabula, { StringSchema, NumberSchema } from "tabula";
 
-const csv = `
-    name,age\n
-    Alice,30\n
-    Bob,25
-`;
+const csv = "name,age\nAlice,30\nBob,25";
 
 const parsed = tabula.parse(csv, {
-  schema: [tabula.String, tabula.Number],
+  schema: [StringSchema, NumberSchema] as const,
   header: true,
 });
 
@@ -57,26 +49,22 @@ console.log(parsed);
 ### Custom schema
 
 ```typescript
-import tabula,  type {SchemaType} from "tabula";
+import tabula, { type SchemaType, StringSchema } from "tabula";
 
 class EmailSchema implements SchemaType<string> {
-    parse(value: string): string {
-        if (!value.includes("@")) {
-            throw new Error("Invalid email");
-        }
-        return value;
+  parse(value: string): string {
+    if (!value.includes("@")) {
+      throw new Error("Invalid email");
     }
+    return value;
+  }
 }
 
-const csv = `
-    name,email\n
-    Alice,alice@test.com\n
-    Bob,bob@test.com\n
-`
+const csv = "name,email\nAlice,alice@test.com\nBob,bob@test.com\n";
 
 const parsed = tabula.parse(csv, {
-    schema: [tabula.String, EmailSchema],
-    header: true,
+  schema: [StringSchema, EmailSchema] as const,
+  header: true,
 });
 ```
 

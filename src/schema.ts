@@ -10,19 +10,19 @@ export type InferSchemaType<T extends Schema[]> = {
   [K in keyof T]: InstanceType<T[K]> extends SchemaType<infer U> ? U : never;
 };
 
-export class Number implements SchemaType<number> {
+export class NumberSchema implements SchemaType<number> {
   parse(value: string): number {
     return parseFloat(value);
   }
 }
 
-export class String implements SchemaType<string> {
+export class StringSchema implements SchemaType<string> {
   parse(value: string): string {
     return value;
   }
 }
 
-export class Boolean implements SchemaType<boolean> {
+export class BooleanSchema implements SchemaType<boolean> {
   parse(value: string): boolean {
     switch (value) {
       case "true":
@@ -35,7 +35,7 @@ export class Boolean implements SchemaType<boolean> {
   }
 }
 
-export class Obj<T extends object> implements SchemaType<T> {
+export class ObjectSchema<T extends object> implements SchemaType<T> {
   parse(value: string): T {
     const obj = JSON.parse(value);
     if (typeof obj !== "object") {
@@ -45,7 +45,7 @@ export class Obj<T extends object> implements SchemaType<T> {
   }
 }
 
-export class Arr<T> implements SchemaType<T[]> {
+export class ArraySchema<T extends unknown> implements SchemaType<T[]> {
   parse(value: string): T[] {
     const arr = JSON.parse(value);
     if (!Array.isArray(arr)) {

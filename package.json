@@ -20,7 +20,8 @@
     "test:watch": "vitest --watch",
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
     "build:esm": "rollup --config ./configs/rollup.config.js",
-    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json"
+    "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
+    "build:types": "tsc -p ./configs/tsconfig.types.json"
   },
   "keywords": [
     "node",
@@ -33,6 +34,11 @@
     "type": "git",
     "url": "git+https://github.com/brano-hozza/tabula.git"
   },
+  "files": [
+    "/lib",
+    "/index.d.ts"
+  ],
+  "sideEffects": false,
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",

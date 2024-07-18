@@ -40,7 +40,8 @@ jobs:
         run: pnpm test
 
       - name: Build lib
-        run: pnpm build
+        run: pnpm clean
+          pnpm build
 
       - id: publish
         name: Publish to NPM

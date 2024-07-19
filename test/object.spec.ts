@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import tabula from "../src";
-import { ArraySchema, ObjectSchema } from "../src/schema";
+import { ArraySchema, ObjectSchema, tabula } from "../src";
+
 describe("JSON in CSV", () => {
   test("should parse a CSV string with object schema", async () => {
     const obj = {

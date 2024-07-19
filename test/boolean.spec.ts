@@ -1,6 +1,5 @@
 import { describe, expect, test } from "vitest";
-import tabula from "../src";
-import { BooleanSchema, NumberSchema } from "../src/schema";
+import { BooleanSchema, tabula } from "../src";
 
 describe("Boolean in CSV", () => {
   test("should parse a simple row", async () => {

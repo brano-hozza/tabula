@@ -1,6 +1,5 @@
 import { expect, test, describe } from "vitest";
-import tabula from "../src/";
-import { NumberSchema, SchemaType } from "../src/schema";
+import { NumberSchema, SchemaType, tabula } from "../src/";
 
 describe("Main CSV parsing tests", () => {
   test("should parse a CSV with custom schema", async () => {

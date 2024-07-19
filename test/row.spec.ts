@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import tabula from "../src";
-import { NumberSchema, StringSchema } from "../src/schema";
+import { NumberSchema, StringSchema, tabula } from "../src";
+
 describe("Single row in CSV", () => {
   test("should parse a CSV string row", async () => {
     const row = tabula.parseRow("1,2,3");

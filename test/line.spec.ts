@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import tabula from "../src/";
+import { tabula } from "../src/";
 
 describe("Test line parsing", () => {
   test("compare native split with custom split", async () => {
